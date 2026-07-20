@@ -1,0 +1,88 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.ekuaibao.com/docs/open-api/getting-started/auth
+docs: https://docs.ekuaibao.com/docs/open-api/getting-started/getting-started
+summary:
+  model: token
+  types:
+  - accessToken
+  - jwt
+  api_key_in:
+  - query
+  oauth2_flows: []
+  notes: >-
+    Proprietary credential-exchange model. An appKey + appSecurity pair (issued in
+    the tenant admin console: 合思 → 合思+ → 开放接口(新) / 自建应用) is exchanged for a
+    short-lived accessToken. The accessToken is then supplied on every subsequent
+    request as the `accessToken` query parameter (not a standard Authorization
+    header, not OAuth2 authorization-code). The address prefix (host) must first be
+    resolved per tenant/platform via GET /api/openapi/v2/location?corpId=.
+schemes:
+- name: getAccessToken (v1)
+  type: token
+  in: query
+  parameter: accessToken
+  token_endpoint: POST https://app.ekuaibao.com/api/openapi/v1/auth/getAccessToken
+  credentials:
+  - appKey
+  - appSecurity
+  returns:
+  - accessToken
+  - refreshToken
+  - expireTime
+  - corporationId
+  ttl_seconds: 7200
+  refresh_endpoint: POST /api/openapi/v1/auth/refreshToken
+  sources:
+  - https://docs.ekuaibao.com/docs/open-api/getting-started/auth
+- name: getAppAccessToken (v1, self-built app)
+  type: token
+  in: query
+  parameter: accessToken
+  token_endpoint: POST https://app.ekuaibao.com/api/openapi/v1/auth/getAppAccessToken
+  credentials:
+  - appKey
+  - appSecret
+  returns:
+  - accessToken
+  - timeout
+  ttl_seconds: 7200
+  since: 1.25.0
+  sources:
+  - https://docs.ekuaibao.com/docs/open-api/getting-started/auth-getAppAccessToken
+- name: getAccessToken (v3, tenant/platform)
+  type: jwt
+  in: query
+  parameter: accessToken
+  token_endpoint: POST https://open.hosecloud.com/auth/openApi/v3/getAccessToken
+  credentials:
+  - appKey
+  - appSecurity
+  returns:
+  - accessToken
+  - refreshToken
+  - expiresTime
+  - scope
+  token_format: JWT (RS256)
+  scopes:
+  - tenant
+  - platform
+  ttl_seconds: 7200
+  sources:
+  - https://docs.ekuaibao.com/docs/open-api/getting-started/authV3
+- name: temp-auth (temporary redirect authorization)
+  type: token
+  in: query
+  parameter: accessToken
+  token_endpoint: POST /api/openapi/v1/auth/getAccessToken (with expireDate)
+  notes: >-
+    Temporary authorization used to open Ekuaibao pages from an external system;
+    expireDate up to 604800 seconds, with an optional overdueTokenRedirect.
+  sources:
+  - https://docs.ekuaibao.com/docs/open-api/getting-started/temp-auth
+deprecated_schemes:
+- name: realms/auth (legacy self-built app auth)
+  endpoint: POST /api/realms/auth
+  superseded_by: getAppAccessToken (v1)
+  sources:
+  - https://docs.ekuaibao.com/docs/open-api/getting-started/platform-auth
