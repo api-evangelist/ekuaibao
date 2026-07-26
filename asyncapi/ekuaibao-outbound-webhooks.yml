@@ -1,0 +1,50 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.ekuaibao.com/docs/open-api/outbound-message/outbound-introduction
+spec_type: none
+type: Webhooks
+summary: >-
+  "出站消息" (Outbound Messages) are HTTP POST requests that HOSE/Ekuaibao fires to an
+  external system (e.g. an OA/ERP) to drive automated integration. Delivery is
+  configured in the tenant admin (系统设置 → 出站消息) or via EBot approval-flow nodes;
+  both the 出站消息 and E-Bot features must be enabled for the tenant.
+prerequisites:
+- Enable the 出站消息 (Outbound Message) feature.
+- Enable the E-Bot feature (for EBot-node-triggered messages).
+transport:
+  method: POST
+  direction: outbound (HOSE -> subscriber endpoint)
+  signature:
+    field: signKey
+    detail: A system-assigned signKey from the outbound-message configuration is
+      included so the receiver can verify the call.
+trigger_types:
+- id: ebot-node
+  name: E-Bot 节点
+  detail: An EBot node in an approval flow fires an outbound message.
+- id: document-approval-event
+  name: 单据审批事件
+  detail: Document (expense/reimbursement) approval lifecycle events.
+- id: business-object-data-change
+  name: 业务对象数据变更
+  detail: Changes to business-object (entity) data.
+- id: repayment-event
+  name: 还款事件
+  detail: Loan/advance repayment events.
+callback:
+  name: 外部服务回调审批 (external service approval callback)
+  endpoint: POST /api/outbound/v1/approval
+  detail: >-
+    After receiving an EBot outbound message and processing it, the external system
+    calls back this endpoint to instruct EBot to accept (同意) or refuse (驳回) the
+    document. Requires the accessToken query param plus a body carrying signKey,
+    flowId, nodeId, action (accept|refuse), comment, and optional rejectTo /
+    resubmitMethod (FROM_START | TO_REJECTOR).
+  docs: https://docs.ekuaibao.com/docs/open-api/outbound-message/outbound-callback
+operations_docs:
+  configure: https://docs.ekuaibao.com/docs/open-api/outbound-message/outbound-new
+  failed_log: https://docs.ekuaibao.com/docs/open-api/outbound-message/call-failed-log-list
+notes: >-
+  No AsyncAPI/CloudEvents document is published; this captures the documented
+  webhook (outbound-message) surface. Payload schemas are configured per message
+  in the tenant admin and are not published as a static catalog.

@@ -1,0 +1,73 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.ekuaibao.com/docs/open-api/getting-started/getting-started
+docs: https://docs.ekuaibao.com/docs/open-api/getting-started
+authentication:
+  style: token-query-param
+  parameter: accessToken
+  detail: see authentication/ekuaibao-authentication.yml
+host_resolution:
+  scheme: dynamic-prefix
+  endpoint: GET /api/openapi/v2/location?corpId={corpId}
+  detail: >-
+    The API host ("地址前缀" / address prefix) varies by tenant and by embedding
+    platform and can change across HOSE system upgrades, so callers must resolve
+    the current prefix before each integration run. Known prefixes: 独立版
+    https://app.ekuaibao.com, 钉钉 https://dd2.hosecloud.com, 企业微信
+    https://wx2.ekuaibao.com, 云之家 https://kdcloud2.ekuaibao.com, 钉钉企业自建应用
+    https://ddenterprise.ekuaibao.com, 飞书 https://feishu.ekuaibao.com.
+versioning:
+  scheme: uri-path
+  detail: >-
+    Version is embedded in the path segment after /api/openapi, and versions
+    coexist per operation (v1, v1.1, v2, v2.1 observed across modules); the
+    platform-level auth uses /auth/openApi/v3. There is no version header or date
+    header.
+  examples:
+  - /api/openapi/v1/...
+  - /api/openapi/v1.1/...
+  - /api/openapi/v2/...
+  - /api/openapi/v2.1/...
+pagination:
+  style: offset
+  params:
+  - start
+  - count
+  detail: >-
+    Offset paging via start & count query params. e.g. start=0&count=10 returns
+    the first page of 10; the second page starts at start=10.
+path_parameters:
+  detail: >-
+    Some path variables are prefixed with `$` in the documented route and must be
+    sent literally with that prefix (e.g. /api/openapi/v2/budgets/$budgetId/query),
+    while others are plain (e.g. .../node/nodeId/add). Follow each operation's doc.
+request_tracing:
+  field: traceId
+  detail: >-
+    v3 error responses carry a traceId used by HOSE engineering for support triage.
+error_envelope:
+  detail: >-
+    Two envelope shapes coexist. v1 success responses wrap the payload in a top
+    level `value` object; the v3 (and newer) responses use a JSON envelope of
+    {code, msg, data} (plus traceId on 500). See errors/ekuaibao-error-codes.yml.
+  shapes:
+  - v1_success: '{ "value": { ... } }'
+  - v3_envelope: '{ "code": "200", "msg": "操作成功", "data": { ... } }'
+idempotency:
+  supported: false
+  detail: >-
+    No idempotency-key header or contract is documented in the Open Platform docs;
+    the changelog notes ad-hoc server-side concurrency control on specific write
+    operations (e.g. update-currency-rate) rather than a client idempotency key.
+rate_limit_signaling:
+  documented: false
+content_type:
+  request: application/json
+  detail: >-
+    JSON request/response over HTTPS (TLSv1.2+ only since 2020-01). The API is a
+    system-to-system interface and does not support direct browser invocation.
+cross_links:
+  authentication: authentication/ekuaibao-authentication.yml
+  errors: errors/ekuaibao-error-codes.yml
+  lifecycle: lifecycle/ekuaibao-lifecycle.yml
+  webhooks: asyncapi/ekuaibao-outbound-webhooks.yml

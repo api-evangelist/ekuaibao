@@ -1,0 +1,46 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.ekuaibao.com/updateLog/update-log
+scheme: semver
+release_cycle:
+  patch: Weekly weekend bugfix releases (and any time for urgent fixes).
+  minor: Monthly backward-compatible feature release.
+  major: Breaking changes and new features, outside the regular cycle.
+current_version: 2.0.1
+current_date: '2024-03-21'
+entries:
+- version: 2.0.1
+  date: '2024-03-21'
+  code_version: 9.129.10
+  breaking: false
+  highlights:
+  - Fixed empty certificateType in get-payeeInfos for WeChat / acceptance-bill /
+    other account categories.
+- version: 2.0.0
+  date: '2024-02-20'
+  code_version: 9.128.14
+  breaking: false
+  highlights:
+  - Documentation center upgrade.
+  - add-budget now supports cross-fiscal-year budget packages (isFiscalYear,
+    periodControl, per-period start/end times).
+  - outbound-callback adds resubmitMethod (post-rejection resubmission mode).
+  - get-flow-invoice now returns medical invoice and fiscal-receipt invoice types.
+- version: 1.27.0
+  date: '2024-01-19'
+  code_version: 9.128.10
+  breaking: false
+  highlights:
+  - New approval-matrix APIs (get-matrixs, get-matrix-byId, matrix rule create/
+    update/delete, active-matrix).
+  - get-template-list supports corpPayment and reimbursement template types.
+  - get-approved-byStaff adds startDate/endDate approval-time filtering.
+- version: 1.26.0
+  date: '2023-11-30'
+  code_version: 9.124.14
+  breaking: false
+  highlights:
+  - New staff-certificate APIs (get-certificate-byStaffId, update-certificate-byStaffId).
+notes: >-
+  Recent window only; the live changelog at the source URL is the source of truth
+  and carries the full timeline back through v0.7.x.

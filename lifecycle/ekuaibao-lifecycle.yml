@@ -1,0 +1,37 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.ekuaibao.com/updateLog/update-log
+versioning:
+  scheme: uri-path
+  detail: >-
+    Multiple API versions coexist per operation in the path (v1, v1.1, v2, v2.1);
+    platform-level auth uses /auth/openApi/v3. New capabilities ship as new
+    versioned paths rather than mutating existing ones.
+  docs: https://docs.ekuaibao.com/docs/open-api/getting-started/getting-started
+release_cycle:
+  scheme: semver
+  patch: weekly weekend bugfix
+  minor: monthly backward-compatible feature
+  major: breaking, out of cycle
+  docs: https://docs.ekuaibao.com/updateLog/update-log
+deprecation:
+  policy_url: https://docs.ekuaibao.com/updateLog/update-log
+  sunset_header: false
+  detail: >-
+    Deprecation is communicated via the changelog and by marking superseded
+    endpoints "旧" (old) in the docs; no RFC 8594 Sunset/Deprecation response
+    headers are documented. The legacy self-built-app auth endpoint /api/realms/auth
+    was superseded by /api/openapi/v1/auth/getAppAccessToken (added in 1.25.0).
+tls_policy:
+  detail: >-
+    All HOSE platforms dropped TLSv1.0/1.1 support in January 2020; only TLSv1.2+
+    is accepted.
+  docs: https://docs.ekuaibao.com/docs/open-api/notice/tls
+sla:
+  url: null
+  detail: No public SLA / uptime commitment is published on the open platform.
+status_page: null
+deprecated_operations:
+- endpoint: POST /api/realms/auth
+  superseded_by: POST /api/openapi/v1/auth/getAppAccessToken
+  source: https://docs.ekuaibao.com/docs/open-api/getting-started/platform-auth

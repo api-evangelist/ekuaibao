@@ -1,0 +1,20 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.ekuaibao.com/docs/open-api/getting-started
+official_sdk: false
+summary: >-
+  No first-party client SDK is published by Ekuaibao/HOSE. The Open Platform docs
+  direct integrators to call the REST API directly (and to test with Postman). The
+  ekuaibao GitHub org hosts infrastructure/forks, not a client library. One
+  community (third-party) PHP SDK exists; it is not maintained by the vendor.
+packages:
+- language: php
+  registry: github
+  name: gamaxtersnow/ekuaibao
+  url: https://github.com/gamaxtersnow/ekuaibao
+  description: 简单易用的易快报sdk (community PHP SDK for the Ekuaibao API)
+  official: false
+notes: >-
+  Because no library is first-party, no `SDKs` rating pointer is emitted (the
+  sdk_count check reads first-party SDKs). This file records the real package
+  landscape for provenance.

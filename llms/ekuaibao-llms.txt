@@ -1,0 +1,38 @@
+# Ekuaibao (合思 / HOSE)
+
+> Ekuaibao (合思 / HOSE, formerly 易快报) is a Chinese AI-powered spend-management and expense-control SaaS used by 7,000+ enterprises, covering expense reimbursement, business travel, corporate payment and settlement, invoice OCR/validation, budget control, BI analytics and electronic accounting archiving. The 合思开放平台 (Open Platform) is a REST API of 200+ operations across ~24 modules. Auth is token-based: an appKey/appSecurity pair is exchanged for a short-lived accessToken (v1) or a JWT tenant/platform token (v3), and the per-tenant host prefix is resolved via GET /api/openapi/v2/location.
+
+## API Documentation
+- [Open Platform getting started](https://docs.ekuaibao.com/docs/open-api/getting-started/getting-started): Read-before-you-build overview.
+- [Authorization (v1)](https://docs.ekuaibao.com/docs/open-api/getting-started/auth): appKey/appSecurity → accessToken.
+- [Self-built app authorization](https://docs.ekuaibao.com/docs/open-api/getting-started/auth-getAppAccessToken): getAppAccessToken.
+- [Authorization v3 (tenant/platform)](https://docs.ekuaibao.com/docs/open-api/getting-started/authV3): JWT tokens.
+- [Address prefix resolution](https://docs.ekuaibao.com/docs/open-api/getting-started/origin): GET /api/openapi/v2/location.
+- [Changelog](https://docs.ekuaibao.com/updateLog/update-log): dated release notes.
+- [Docs source (GitHub)](https://github.com/ekuaibao/open-platform-docs): Docusaurus docs repository.
+
+## API Modules
+- Contacts (staff & departments), Corporation (roles, org), Budgets, Expense Flows (documents & approvals), Forms (templates), Fee Types, Pay & Payer Info, Checking Bills, City & Currency master data, Data Link & Data Link Extend (invoices, OCR, external entities), Dimensions, Approval Matrices, Delegates, Attachments, Record Link, History, Mall, Notice, and Outbound Messages (webhooks).
+
+## Webhooks
+- [Outbound messages](https://docs.ekuaibao.com/docs/open-api/outbound-message/outbound-introduction): HOSE POSTs to external systems on EBot-node, document-approval, business-object-change and repayment events.
+- [Approval callback](https://docs.ekuaibao.com/docs/open-api/outbound-message/outbound-callback): POST /api/outbound/v1/approval to accept/refuse.
+
+## Repo Artifacts
+- [Authentication profile](authentication/ekuaibao-authentication.yml)
+- [API conventions](conventions/ekuaibao-conventions.yml)
+- [Error catalog](errors/ekuaibao-error-codes.yml)
+- [Changelog](changelog/ekuaibao-changelog.yml)
+- [Lifecycle](lifecycle/ekuaibao-lifecycle.yml)
+- [Webhooks catalog](asyncapi/ekuaibao-outbound-webhooks.yml)
+- [MCP candidate tools](mcp/ekuaibao-mcp.yml)
+- [Packages](packages/ekuaibao-packages.yml)
+- [Domain security probe](security/ekuaibao-domain-security.yml)
+
+## Company
+- [Website](https://www.ekuaibao.com/)
+- [News / blog](https://www.ekuaibao.com/news.html)
+- [Register / free trial](https://www.ekuaibao.com/register.html)
+- [GitHub organization](https://github.com/ekuaibao)
+- [Terms of service](https://www.ekuaibao.com/website-static/user-agreement.html)
+- [Privacy policy](https://www.ekuaibao.com/website-static/user-policy.html)

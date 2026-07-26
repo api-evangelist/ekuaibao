@@ -1,0 +1,71 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.ekuaibao.com/docs/open-api/getting-started/auth
+docs: https://docs.ekuaibao.com/docs/open-api/getting-started/question-answer
+format: proprietary
+envelope:
+  detail: >-
+    Cross-cutting errors are returned either as an HTTP error status (e.g. 403 on
+    the v1 auth endpoints) or, in the v3/newer envelope, as HTTP 200 with a JSON
+    body {code, msg, data} where code carries the business status and msg the
+    Chinese message; 500 responses add a traceId for support triage.
+  fields:
+  - code
+  - msg
+  - data
+  - traceId
+errors:
+- code: '403'
+  http_status: 403
+  title: 密钥无效
+  title_en: Invalid credentials
+  cause: >-
+    appKey or appSecurity is wrong, or was sent as a query param instead of in the
+    request body, or the address prefix does not match the tenant environment.
+  remediation: >-
+    Send appKey/appSecurity in the JSON body; verify the values from the tenant
+    console; resolve the correct address prefix via /api/openapi/v2/location.
+  source_operation: POST /api/openapi/v1/auth/getAccessToken
+- code: '403'
+  http_status: 200
+  title: 密钥无效
+  title_en: Invalid credentials (v3 envelope)
+  cause: appKey or appSecurity incorrect on the v3 platform/tenant auth endpoint.
+  remediation: Verify appKey/appSecurity.
+  source_operation: POST /auth/openApi/v3/getAccessToken
+- code: '500'
+  http_status: 200
+  title: 应用不存在
+  title_en: Application does not exist
+  cause: The appKey (接入账号) does not correspond to a registered application.
+  remediation: Confirm the appKey is correct.
+  source_operation: POST /api/openapi/v1/auth/getAppAccessToken
+- code: '500'
+  http_status: 200
+  title: 应用鉴权失败
+  title_en: Application authentication failed
+  cause: The appSecret (接入密码) is incorrect.
+  remediation: Confirm the appSecret is correct.
+  source_operation: POST /api/openapi/v1/auth/getAppAccessToken
+- code: '500'
+  http_status: 200
+  title: system error
+  title_en: System error
+  cause: Missing required auth parameters, or an internal server error.
+  remediation: >-
+    Confirm appKey/appSecurity are supplied; provide the returned traceId to HOSE
+    support if it persists.
+  source_operation: POST /auth/openApi/v3/getAccessToken
+- code: '401'
+  http_status: 200
+  title: token未授权
+  title_en: Token unauthorized
+  cause: Request reached an authenticated endpoint without a valid accessToken.
+  remediation: Obtain and pass a current accessToken (see authentication profile).
+  source_operation: gateway (open.hosecloud.com)
+notes: >-
+  Ekuaibao does not publish RFC 9457 problem+json. Per-module error tables and
+  FAQ (question-answer) pages document operation-specific validation errors; this
+  catalog captures the cross-cutting authentication/gateway errors documented in
+  the getting-started section. See each module's question-answer page for the full
+  per-operation error set.

@@ -1,0 +1,64 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: https://docs.ekuaibao.com/docs/open-api/getting-started
+server:
+  name: ekuaibao
+  transport: none
+  url: null
+  detail: >-
+    No official hosted/remote MCP server was found for Ekuaibao/HOSE. This is a
+    CANDIDATE tool list derived from documented Open Platform operations to seed a
+    future MCP wrapper; every tool maps to a real documented endpoint (method +
+    path). Not an authoritative provider claim.
+auth:
+  detail: >-
+    All tools except get_access_token require a valid accessToken (query param),
+    obtained by exchanging appKey/appSecurity. See authentication/ekuaibao-authentication.yml.
+tools:
+- name: get_access_token
+  description: Exchange appKey/appSecurity for a short-lived accessToken.
+  source_operation: POST /api/openapi/v1/auth/getAccessToken
+- name: get_location
+  description: Resolve the current API address prefix (host) for a tenant by corpId.
+  source_operation: GET /api/openapi/v2/location
+- name: list_budgets
+  description: List budget packages for the enterprise.
+  source_operation: GET /api/openapi/v2/budgets
+- name: get_budget
+  description: Get details of a budget package by id.
+  source_operation: GET /api/openapi/v2/budgets/$budgetId
+- name: create_budget
+  description: Create a budget package.
+  source_operation: POST /api/openapi/v2.1/budgets/create
+- name: add_department
+  description: Create a department in the org contacts.
+  source_operation: POST /api/openapi/v1/departments
+- name: add_staff
+  description: Create a staff member.
+  source_operation: POST /api/openapi/v1.1/staffs
+- name: get_staff_custom_properties
+  description: Get staff custom-field definitions.
+  source_operation: GET /api/openapi/v1/staffs/getAllCustomeProperty
+- name: get_city_list
+  description: Get the city master-data list.
+  source_operation: POST /api/openapi/v1/city/getCityList
+- name: get_staff_credit
+  description: Query a staff member's credit score.
+  source_operation: GET /api/openapi/v2/credit/byStaffId
+- name: create_checking_bill
+  description: Create a checking-bill accounting period.
+  source_operation: POST /api/openapi/v1/checking/createCheckingBill
+- name: upload_attachment
+  description: Upload an attachment (e.g. an invoice image).
+  source_operation: POST /api/openapi/v2/attachment/upload
+- name: get_attachment_download_urls
+  description: Get download URLs for attachments.
+  source_operation: POST /api/openapi/v2/attachment/downloadurls
+- name: approve_outbound_document
+  description: Call back an EBot outbound message to accept/refuse a document.
+  source_operation: POST /api/outbound/v1/approval
+notes: >-
+  Ekuaibao publishes no OpenAPI spec (docs are Docusaurus markdown), so these tools
+  are grounded in documented endpoint method+path rather than operationIds. The
+  full surface is 200+ operations across ~24 modules.

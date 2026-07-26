@@ -1,9 +1,32 @@
 aid: ekuaibao
 name: Ekuaibao
-description: 'Ekuaibao is a company surfaced as a portfolio company of dcm-ventures and added to the API
-  Evangelist network as a stub for enrichment. Sector: enterprise. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  Ekuaibao (合思 / HOSE, formerly 易快报) is a Chinese AI-powered spend-management and
+  expense-control SaaS platform used by more than 7,000 enterprises. It unifies
+  expense reimbursement, business-travel booking and management, corporate payment
+  and settlement, invoice OCR and validation, budget control, BI analytics and
+  electronic accounting archiving. The company operates the 合思开放平台 (Ekuaibao Open
+  Platform), a substantial REST API of 200+ documented operations across two dozen
+  modules — contacts, corporation, budgets, expense flows, forms, fee types, pay
+  and payer info, city and currency master data, data links, matrices, delegates
+  and outbound-message webhooks — letting external systems (OA, ERP, HR, travel)
+  synchronize staff, departments, budgets, documents, invoices and approvals.
+  Access is token-based: an appKey/appSecurity pair is exchanged for a
+  short-lived accessToken (v1) or a JWT-based tenant/platform token (v3).
 url: https://raw.githubusercontent.com/api-evangelist/ekuaibao/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.ekuaibao.com/uploads/20260421/35efafc6cff1340314ddb0f441d3ecf1.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -12,11 +35,47 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Enterprise
-apis: []
+- Expense Management
+- Spend Management
+- Travel and Expense
+- Reimbursement
+- Finance
+- Accounting
+- Invoicing
+- SaaS
+- China
+apis:
+- name: Ekuaibao Open API
+  description: >-
+    The 合思开放平台 (Ekuaibao / HOSE Open Platform) REST API. 200+ documented operations
+    across contacts, corporation, budgets, expense flows, forms, fee types, pay,
+    payer info, checking bills, city and currency master data, data links, invoice
+    extensions, dimensions, matrices, delegates and outbound-message webhooks.
+    Auth is token-based (appKey/appSecurity exchanged for a short-lived accessToken;
+    a v3 flow issues JWT tenant/platform tokens). The address prefix is resolved
+    per tenant/platform via GET /api/openapi/v2/location.
+  humanURL: https://docs.ekuaibao.com/docs/open-api/getting-started
+  baseURL: https://app.ekuaibao.com
+  tags:
+  - Expense Management
+  - Spend Management
+  - Finance
+  - Reimbursement
+  - Budget
+  - Enterprise
+  properties:
+  - type: Documentation
+    url: https://docs.ekuaibao.com/docs/open-api/getting-started
+  - type: APIReference
+    url: https://docs.ekuaibao.com/docs/open-api/getting-started
+  - type: GettingStarted
+    url: https://docs.ekuaibao.com/docs/open-api/getting-started/getting-started
+  - type: Authentication
+    url: authentication/ekuaibao-authentication.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +84,54 @@ maintainers:
 common:
 - type: Website
   url: https://www.ekuaibao.com/
+- type: DeveloperPortal
+  url: https://docs.ekuaibao.com/
+- type: Documentation
+  url: https://docs.ekuaibao.com/docs/open-api/getting-started/getting-started
+- type: APIReference
+  url: https://docs.ekuaibao.com/docs/open-api/getting-started
+- type: GettingStarted
+  url: https://docs.ekuaibao.com/docs/open-api/getting-started/getting-started
+- type: GitHubOrganization
+  url: https://github.com/ekuaibao
+- type: Blog
+  url: https://www.ekuaibao.com/news.html
+- type: SignUp
+  url: https://www.ekuaibao.com/register.html
+- type: Login
+  url: https://app.ekuaibao.com/web/app.html#/login
+- type: Support
+  url: https://www.ekuaibao.com/contact.html
+- type: TermsOfService
+  url: https://www.ekuaibao.com/website-static/user-agreement.html
+- type: PrivacyPolicy
+  url: https://www.ekuaibao.com/website-static/user-policy.html
+- type: ChangeLog
+  url: https://docs.ekuaibao.com/updateLog/update-log
+- type: ChangeLog
+  url: changelog/ekuaibao-changelog.yml
+- type: Authentication
+  url: authentication/ekuaibao-authentication.yml
+- type: Conventions
+  url: conventions/ekuaibao-conventions.yml
+- type: ErrorCatalog
+  url: errors/ekuaibao-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/ekuaibao-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/ekuaibao-lifecycle.yml
+- type: Webhooks
+  url: asyncapi/ekuaibao-outbound-webhooks.yml
+- type: MCPServer
+  url: mcp/ekuaibao-mcp.yml
+- type: LLMsTxt
+  url: llms/ekuaibao-llms.txt
+- type: Packages
+  url: packages/ekuaibao-packages.yml
+- type: DomainSecurity
+  url: security/ekuaibao-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
