@@ -6,15 +6,12 @@ server:
   name: ekuaibao
   transport: none
   url: null
-  detail: >-
-    No official hosted/remote MCP server was found for Ekuaibao/HOSE. This is a
-    CANDIDATE tool list derived from documented Open Platform operations to seed a
-    future MCP wrapper; every tool maps to a real documented endpoint (method +
-    path). Not an authoritative provider claim.
+  detail: No official hosted/remote MCP server was found for Ekuaibao/HOSE. This is a CANDIDATE tool list
+    derived from documented Open Platform operations to seed a future MCP wrapper; every tool maps to
+    a real documented endpoint (method + path). Not an authoritative provider claim.
 auth:
-  detail: >-
-    All tools except get_access_token require a valid accessToken (query param),
-    obtained by exchanging appKey/appSecurity. See authentication/ekuaibao-authentication.yml.
+  detail: All tools except get_access_token require a valid accessToken (query param), obtained by exchanging
+    appKey/appSecurity. See authentication/ekuaibao-authentication.yml.
 tools:
 - name: get_access_token
   description: Exchange appKey/appSecurity for a short-lived accessToken.
@@ -58,7 +55,12 @@ tools:
 - name: approve_outbound_document
   description: Call back an EBot outbound message to accept/refuse a document.
   source_operation: POST /api/outbound/v1/approval
-notes: >-
-  Ekuaibao publishes no OpenAPI spec (docs are Docusaurus markdown), so these tools
-  are grounded in documented endpoint method+path rather than operationIds. The
-  full surface is 200+ operations across ~24 modules.
+notes: Ekuaibao publishes no OpenAPI spec (docs are Docusaurus markdown), so these tools are grounded
+  in documented endpoint method+path rather than operationIds. The full surface is 200+ operations across
+  ~24 modules.
+deployment:
+  mode: none
+  verified: derived
+  tools: 14
+  checked: '2026-08-12'
+  source: catalog MCP census
