@@ -14,6 +14,17 @@ description: >-
   Access is token-based: an appKey/appSecurity pair is exchanged for a
   short-lived accessToken (v1) or a JWT-based tenant/platform token (v3).
 url: https://raw.githubusercontent.com/api-evangelist/ekuaibao/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
