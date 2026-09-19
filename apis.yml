@@ -88,6 +88,13 @@ apis:
   - Spend Management
   - Finance
   - Reimbursement
+  - Budgets
+  - Enterprise
+  tags_raw:
+  - Expense Management
+  - Spend Management
+  - Finance
+  - Reimbursement
   - Budget
   - Enterprise
   properties:
